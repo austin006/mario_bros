@@ -13,6 +13,9 @@ void robot_action(void);
 int main(void) {
     robot_init();
     
+    if (something) {
+        
+    }
     while(1)
     {
         robot_perception();
