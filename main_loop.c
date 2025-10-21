@@ -1,5 +1,5 @@
-// #include <xc.h>
-// #include "helper_functions.h"
+#include <xc.h>
+#include "helper_functions.h"
 
 // Create an enumerated type for the states
 enum {line_following, ball_pick_up, ball_drop_off, canyon_navigation, lander_laser} state;
@@ -13,9 +13,6 @@ void robot_action(void);
 int main(void) {
     robot_init();
     
-    if (something) {
-        
-    }
     while(1)
     {
         robot_perception();
@@ -39,7 +36,7 @@ void robot_init(void) {
 void robot_perception(void) {
   // This function polls all of the sensors and then assigns sensor outputs
   // that can be used by the robot in subsequent stages
-
+    
 }
 
 /**********************************************************************************************************
@@ -106,4 +103,5 @@ void robot_planning(void) {
  ********************************************************************/
 void robot_action(void) {
     // Do the actions decided in robot_planning
+    // Each action function will be defined in the corresponding task header/source files 
 }
