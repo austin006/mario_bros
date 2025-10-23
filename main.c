@@ -1,14 +1,14 @@
 #include <xc.h>
 #include "helper_functions.h"
 
+//# pragma config FNOSC = FRCDIV // 8 MHz oscillator
+#pragma config FNOSC = LPFRC //500 kHz low-power internal oscillator
+//#pragma config FNOSC = LPRC     // 31 kHz LPRC oscillator
+
 // Pins 8, 9, and 10 can be a little funky because they are shared with other peripherals. 
 // Sometimes that messes with our ability to use the pins for analog or digital I/O. 
 #pragma config OSCIOFNC = OFF // Turn off clock output on pin 8
 #pragma config SOSCSRC = DIG // Turn off secondary oscillator on pins 9&10
-
-//# pragma config FNOSC = FRCDIV // 8 MHz oscillator
-#pragma config FNOSC = LPFRC //500 kHz low-power internal oscillator
-//#pragma config FNOSC = LPRC     // 31 kHz LPRC oscillator
 
 /***********************************************************/
 // Create an enumerated type for the states
@@ -59,6 +59,14 @@ int main(void) {
 void robot_init(void) {
     state = line_following; // Initial state
     _RCDIV = 0b011;         // 1 MHz (divide-by-8 postscaler)
+
+    // The PIC24 requires all unused I/O pins to be set to digital outputs set to low when not in use. 
+    ANSA = 0;
+    ANSB = 0;
+    TRISA = 0;
+    TRISB = 0;
+    LATA = 0;
+    LATB = 0;
 
     // Configuration for motor pins
     _TRISA6 = 0;    // Pin 14 -> digital output

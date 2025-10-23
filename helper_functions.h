@@ -1,8 +1,9 @@
-// This header file declares the helper functions from helper_functions_source for the project.
+// This header file declares the helper functions
 
 // File: helper_functions_header.h
 // Fall 2025
 
+#pragma once
 #include <xc.h>
 
 /********************************************************************
