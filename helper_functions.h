@@ -1,4 +1,4 @@
- #include <xc.h> // include processor files - each processor file is guarded.  
+ #include <xc.h>
 
 void config_pwm_right_motor(void)
 {
@@ -37,6 +37,8 @@ void speed_left_motor(int period)
 void config_ad(void)
 {
     // This function sets up configuration to read from multiple A/D channels in scan mode
+    // See page 27 of 'Programming a PIC24 in MPLAB X'
+
     _ADON = 0;          // AD1CON1<15> -- Turn off A/D during config
    
     // Clear all A/D registers
@@ -92,4 +94,12 @@ void config_ad(void)
     _CSS14 = 1;
    
     _ADON = 1;      // AD1CON1<15> -- Turn on A/D
+}
+
+void config_interrupts(void)
+{
+    // Configure interrupts for OC1 (right motor)
+    _OC1IE = 1;     // Enable OC1 interrupt
+    _OC1IF = 0;     // Clear OC1 interrupt flag
+    _OC1IP = 5;     // Set OC1 interrupt priority to 5
 }
